@@ -49,11 +49,6 @@ const routes = [
     name: 'Products',
     component: () => import('../views/frontEnd/Products.vue')
   },
-  // {
-  //   path: '/characters',
-  //   name: 'Characters',
-  //   component: () => import('../views/frontEnd/Characters.vue')
-  // },
   {
     path: '/news',
     name: 'News',
