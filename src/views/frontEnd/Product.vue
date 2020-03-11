@@ -1,7 +1,8 @@
 <template>
   <div class="mainContent">
+    <Alert/>
     <loading :active.sync="isLoading">
-      <Circle4></Circle4>
+        <img src="../../assets/images/load.gif" alt="loading">
     </loading>
     <!-- Start Header -->
     <Header/>
@@ -42,17 +43,12 @@
     <!-- cart Icon -->
     <Cart :cart="carts" @emitDelete="deleteItem"></Cart>
     <!---->
-
-    <!-- Start Footer -->
-    <Footer/>
-    <!-- End Footer -->
   </div>
 </template>
 
 <script>
-import { Circle4 } from 'vue-loading-spinner'
+import Alert from '../../components/AlertMessage'
 import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 import Cart from '../../components/Cart'
 
 export default {
@@ -69,10 +65,9 @@ export default {
     }
   },
   components: {
-    Circle4,
     Header,
-    Footer,
-    Cart
+    Cart,
+    Alert
   },
   methods: {
     getProduct () {
@@ -106,17 +101,29 @@ export default {
       vm.status.addToCartIcon = true
       vm.$http.post(api, { data: cart }).then(response => {
         console.log(response)
-        vm.getCart()
-        vm.status.addToCartIcon = false
+        if (response.data.success) {
+          console.log(response)
+          vm.getCart()
+          vm.status.addToCartIcon = false
+          // vm.isLoading = false
+          vm.$bus.$emit('message:push', response.data.message, 'primary')
+        } else {
+          vm.$bus.$emit('message:push', response.data.message, 'danger')
+        }
       })
     },
     deleteItem (id) {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       vm.isLoading = true
-      vm.$http.delete(api).then((response) => {
-        vm.getCart()
-        vm.isLoading = false
+      vm.axios.delete(api).then((response) => {
+        if (response.data.success) {
+          vm.getCart()
+          vm.isLoading = false
+          vm.$bus.$emit('message:push', response.data.message, 'orange')
+        } else {
+          vm.$bus.$emit('message:push', response.data.message, 'danger')
+        }
       })
     }
   },

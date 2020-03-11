@@ -1,11 +1,12 @@
 <template>
   <div class="products">
     <loading :active.sync="isLoading">
-      <Circle4></Circle4>
+      <img src="../../assets/images/load.gif" alt="loading">
+      <!-- <Circle4></Circle4> -->
     </loading>
 
     <div class="text-right mb-4">
-      <button class="btn btn-outline-primary" @click.prevent="openModal(true)">
+      <button class="btn btn-outline-primary" @click.prevent="openProductModal(true)">
         <i class="fas fa-plus mr-2"></i>新增產品
       </button>
     </div>
@@ -35,13 +36,13 @@
               <button
                 type="button"
                 class="btn btn-outline-primary"
-                @click.prevent="openModal(false, item)"
+                @click.prevent="openProductModal(false, item)"
               >
                 <i class="fas fa-pencil-alt"></i>
               </button>
               <button
                 type="button"
-                class="btn btn-outline-danger"
+                class="btn btn-outline-orange"
                 @click.prevent="delModal(item)"
               >
                 <i class="fas fa-trash-alt"></i>
@@ -70,7 +71,7 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-primary text-white">
             <h5 class="modal-title editModalTitle" id="productModalLabel">
-              <span>新增產品</span>
+              <span>編輯產品</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <i class="far fa-times-circle text-white" aria-hidden="true"></i>
@@ -205,8 +206,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" @click="updateProduct">確認</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary addProduct" @click="updateProduct">更新確認</button>
           </div>
         </div>
       </div>
@@ -224,7 +225,7 @@
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content border-0">
-          <div class="modal-header bg-danger text-white">
+          <div class="modal-header bg-orange text-white">
             <h5 class="modal-title delModalTitle" id="exampleModalLabel">
               <span>刪除產品</span>
             </h5>
@@ -234,11 +235,11 @@
           </div>
           <div class="modal-body">
             是否刪除
-            <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
+            <strong class="text-orange">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click.prevent="delProduct"><i class="fas fa-spinner fa-spin mr-2" v-if="status.loadingItem === tempProduct.id"></i>確認刪除</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-orange" @click.prevent="delProduct"><i class="fas fa-spinner fa-spin mr-2" v-if="status.loadingItem === tempProduct.id"></i>確認刪除</button>
           </div>
         </div>
       </div>
@@ -247,15 +248,13 @@
   </div>
 </template>
 <script>
-import { Circle4 } from 'vue-loading-spinner'
 import Pagination from '../../components/Pagination'
 import $ from 'jquery'
 
 export default {
   name: 'products',
   components: {
-    Pagination,
-    Circle4
+    Pagination
   },
   data () {
     return {
@@ -282,15 +281,18 @@ export default {
         vm.pagination = response.data.pagination
       })
     },
-    openModal (isNew, item) {
+    openProductModal (isNew, item) {
       const vm = this
       if (isNew) {
         vm.isNew = true
         vm.tempProduct = {}
+        $('.editModalTitle').text('新增產品')
+        $('.addProduct').text('確認新增產品')
       } else {
         vm.isNew = false
         vm.tempProduct = Object.assign({}, item)
         $('.editModalTitle').text(`編輯產品: ${vm.tempProduct.title}`)
+        $('.addProduct').text('更新產品')
       }
       $('#productModal').modal('show')
     },

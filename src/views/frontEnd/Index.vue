@@ -3,7 +3,7 @@
     <!-- Start Header -->
     <Header/>
     <!-- End Header -->
-    <div class="container">
+    <div class="container mt-4">
       <!-- Start Carousel -->
       <header>
         <div id="mycarousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -17,10 +17,10 @@
                    <img class="d-block w-100" src="../../assets/images/banner01.png" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="../../assets/images/banner02.png" alt="Second slide">
+                    <img class="d-block w-100" src="../../assets/images/banner03.png" alt="Third slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="../../assets/images/banner03.png" alt="Third slide">
+                    <img class="d-block w-100" src="../../assets/images/banner02.png" alt="Second slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
@@ -63,7 +63,7 @@
           <!-- <div class="col-md-4">
             <router-link to="/news" class="newsLink">
               <div class="card">
-                <img class="card-img-top" src="https://fakeimg.pl/600x400/" alt="Card image cap">
+                <img class="card-img-top" src="" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">活動消息3</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

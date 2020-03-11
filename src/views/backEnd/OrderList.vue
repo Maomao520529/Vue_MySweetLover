@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <loading :active.sync="isLoading">
-      <Circle4></Circle4>
+      <img src="../../assets/images/load.gif" alt="loading">
     </loading>
 
     <table class="table table-hover mt-4">
@@ -42,14 +42,12 @@
   </div>
 </template>
 <script>
-import { Circle4 } from 'vue-loading-spinner'
 import Pagination from '../../components/Pagination'
 
 export default {
   name: 'orderList',
   components: {
-    Pagination,
-    Circle4
+    Pagination
   },
   data () {
     return {

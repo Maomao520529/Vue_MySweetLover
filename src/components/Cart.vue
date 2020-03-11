@@ -2,7 +2,7 @@
   <div>
     <div class="cartInfo">
       <div class="cartIcon" data-toggle="collapse" data-target="#cartCollapse">
-        <img src="../assets/images/shop.png" alt="">
+        <img src="../assets/images/shop.png" alt="shop">
         <div class="dot" v-if="cart.length !== 0"></div>
       </div>
       <div class="collapse cartCollapse" id="cartCollapse">

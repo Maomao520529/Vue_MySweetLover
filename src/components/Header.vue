@@ -142,11 +142,5 @@ export default {
       }
     }
   }
-  // .iName{
-  //   font-size: 27px;
-  //   font-weight: 600;
-  //   line-height: 60px;
-  //   color: $black;
-  // }
 }
 </style>

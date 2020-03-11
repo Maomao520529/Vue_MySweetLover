@@ -2,7 +2,7 @@
   <div class="mainContent">
     <Alert/>
     <loading :active.sync="isLoading">
-      <Circle4></Circle4>
+        <img src="../../assets/images/load.gif" alt="loading">
     </loading>
     <!-- Start Header -->
     <Header/>
@@ -92,18 +92,12 @@
       <!---->
     </div>
     <!-- End Content -->
-
-    <!-- Start Footer -->
-    <Footer/>
-    <!-- End Footer -->
   </div>
 </template>
 
 <script>
 import Alert from '../../components/AlertMessage'
-import { Circle4 } from 'vue-loading-spinner'
 import Header from '../../components/Header'
-import Footer from '../../components/Footer'
 import Cart from '../../components/Cart'
 
 export default {
@@ -120,9 +114,7 @@ export default {
     }
   },
   components: {
-    Circle4,
     Header,
-    Footer,
     Cart,
     Alert
   },

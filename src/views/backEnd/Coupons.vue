@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <loading :active.sync="isLoading">
-      <Circle4></Circle4>
+      <img src="../../assets/images/load.gif" alt="loading">
     </loading>
 
     <div class="text-right mb-4">
@@ -36,12 +36,16 @@
                 type="button"
                 class="btn btn-outline-primary"
                 @click.prevent="openCouponModal (false, item)"
-              >編輯</button>
+              >
+              <i class="fas fa-pencil-alt"></i>
+              </button>
               <button
                 type="button"
-                class="btn btn-outline-danger"
+                class="btn btn-outline-orange"
                 @click.prevent="openDelModal (item)"
-              >刪除</button>
+              >
+              <i class="fas fa-trash-alt"></i>
+              </button>
             </div>
           </td>
         </tr>
@@ -65,8 +69,8 @@
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title couponTitle" id="exampleModalLabel">Modal title</h5>
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title couponTitle" id="exampleModalLabel"><span>編輯優惠券</span></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -140,7 +144,7 @@
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content border-0">
-          <div class="modal-header bg-danger text-white">
+          <div class="modal-header bg-orange text-white">
             <h5 class="modal-title delModalTitle" id="exampleModalLabel">
               <span>刪除產品</span>
             </h5>
@@ -150,11 +154,11 @@
           </div>
           <div class="modal-body">
             是否刪除
-            <strong class="text-danger">{{ tempCoupon.title }}</strong> 商品(刪除後將無法恢復)。
+            <strong class="text-orange">{{ tempCoupon.title }}</strong> 商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click.prevent="delCoupon"><i class="fas fa-spinner fa-spin mr-2" v-if="status.loadingItem === tempCoupon.id"></i>確認刪除</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-orange" @click.prevent="delCoupon"><i class="fas fa-spinner fa-spin mr-2" v-if="status.loadingItem === tempCoupon.id"></i>確認刪除</button>
           </div>
         </div>
       </div>
@@ -163,15 +167,13 @@
   </div>
 </template>
 <script>
-import { Circle4 } from 'vue-loading-spinner'
 import Pagination from '../../components/Pagination'
 import $ from 'jquery'
 
 export default {
   name: 'coupons',
   components: {
-    Pagination,
-    Circle4
+    Pagination
   },
   data () {
     return {
@@ -218,7 +220,7 @@ export default {
         vm.isNew = true
         vm.tempCoupon = {}
         $('.couponTitle').text('新增優惠券')
-        $('.addCoupon').text('新增優惠券')
+        $('.addCoupon').text('確認新增優惠券')
       } else {
         vm.isNew = false
         vm.tempCoupon = Object.assign({}, item)

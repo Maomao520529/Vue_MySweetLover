@@ -46,7 +46,8 @@ export default {
   width: 100%;
   position: relative;
   left: 0;
-  bottom: 0;
+  top: 0;
+  // border: 2px solid red;
   .footer{
     padding-top: 30px;
     padding-bottom: 30px;

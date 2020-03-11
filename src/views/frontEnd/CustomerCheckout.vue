@@ -1,7 +1,7 @@
 <template>
   <div>
     <loading :active.sync="isLoading">
-      <Circle4></Circle4>
+      <img src="../../assets/images/load.gif" alt="loading">
     </loading>
     <!-- Start Header -->
     <Header/>
@@ -91,7 +91,6 @@
 </template>
 
 <script>
-import { Circle4 } from 'vue-loading-spinner'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
@@ -107,7 +106,6 @@ export default {
     }
   },
   components: {
-    Circle4,
     Header,
     Footer
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="main-bg">
     <loading :active.sync="isLoading">
-      <Circle4></Circle4>
+      <img src="../../assets/images/load.gif" alt="loading">
     </loading>
      <h1>Account Login Form</h1>
     <div class="sub-main-w3">
@@ -45,13 +45,9 @@
 </template>
 
 <script>
-import { Circle4 } from 'vue-loading-spinner'
 
 export default {
   name: 'Login',
-  components: {
-    Circle4
-  },
   data () {
     return {
       user: {
