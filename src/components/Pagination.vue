@@ -48,17 +48,3 @@ export default {
   }
 }
 </script>
-
-<!--觀念澄清
-父子元素互動使用 props/emit
-props 為子元素接收父元素指令(外→內)；emit 為子元素回傳給父元素指令(內→外)
--->
-
-<!--
-  step1. 父元件動態綁定 pages(:pages)，將 pagination 資料往子元件傳送
-  step2. 子元件使用 props['pages'] 接收由父元件傳來的 pagination 資料
-  ** 此時 pagination.XXX 將寫成 pages.XXX **
-  step3. 在子元件中觸發 updatePage() 事件並將參數攜帶著往父元素移動
-  step4. updatePage() 使用 $emit 往父元件找尋 emitPages 事件
-  step5. 父元件下觸發 @emitPages="getProducts"，並將 updatePages 所帶參數帶入事件中
--->
